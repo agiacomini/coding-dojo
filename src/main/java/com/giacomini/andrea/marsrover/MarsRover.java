@@ -2,10 +2,14 @@ package com.giacomini.andrea.marsrover;
 
 class MarsRover {
 
-//    String direction = "N";
+    //    String direction = "N";
     Direction direction = Direction.NORTH;
-    String execute(String commands) {
 
+    Coordinate coordinate = new Coordinate(0,0);
+
+    private Grid grid;
+
+    String execute(String commands) {
         System.out.println(commands.toCharArray());
         for(char c : commands.toCharArray()){
             if(c == 'R'){
@@ -18,9 +22,15 @@ class MarsRover {
                 direction = direction.left();
 //                direction = eDirection.value();
             }
+            if(c == 'M'){
+//                coordinate = move();
+                grid = new Grid();
+                coordinate = grid.nextCoordinateFor(coordinate, direction);
+            }
         }
 //        return "0:0:" + direction;
-        return "0:0:" + direction.value();
+//        return "0" + ":" + "0" + ":" + direction.value();
+        return coordinate.x() + ":" + coordinate.y() + ":" + direction.value();
     }
 
     //    private String rotateLeft() {
