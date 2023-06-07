@@ -1,0 +1,48 @@
+package com.giacomini.andrea.marsrover;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+@RunWith(JUnitParamsRunner.class)
+public class MarsRoverShoulds {
+
+    private MarsRover rover;
+
+    @Before
+    public void initialise(){
+        rover = new MarsRover();
+    }
+
+    @Test
+    @Parameters({
+            "R, 0:0:E",
+            "RR, 0:0:S",
+            "RRR, 0:0:W",
+            "RRRR, 0:0:N"
+    })
+    public void
+//    rotate_right(){
+    rotate_right(String commands, String position){
+//        MarsRover rover = new MarsRover();
+//        assertThat(rover.execute("R"), is("0:0:E"));
+        assertThat(rover.execute(commands), is(position));
+    }
+
+    @Test
+    @Parameters({
+            "L, 0:0:W",
+            "LL, 0:0:S",
+            "LLL, 0:0:E",
+            "LLLL, 0:0:N"
+    })
+    public void
+    rotate_left(String commands, String position){
+        assertThat(rover.execute(commands), is(position));
+    }
+}
