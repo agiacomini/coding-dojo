@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+
+import static org.assertj.core.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +19,8 @@ public class MarsRoverShoulds {
 
     @Before
     public void initialise(){
-        rover = new MarsRover();
+        Grid grid = new Grid();
+        rover = new MarsRover(grid);
     }
 
     @Test
@@ -109,6 +113,32 @@ public class MarsRoverShoulds {
     })
     public void
     move_south(String commands, String position){
+
+        assertThat(rover.execute(commands), is(position));
+    }
+
+    @Test
+    @Parameters({
+            "MMMM, 0:3:N",
+            "RMMMMMM, 1:0:E"
+    })
+    public void
+    stop_at_obstacle(String commands, String position){
+        Coordinate obstacle_0x4 = new Coordinate(0,4);
+        Coordinate obstacle_2x0 = new Coordinate(2,0);
+        Grid grid = new Grid(Arrays.asList(obstacle_0x4, obstacle_2x0));
+        MarsRover rover = new MarsRover(grid);
+
+        assertThat(rover.execute(commands), is(position));
+    }
+
+    @Test
+    @Parameters({
+            "MMRMMLM, 2:3:N",
+            "MMMMMMMMMM, 0:0:N",
+    })
+    public void
+    my_test(String commands, String position){
 
         assertThat(rover.execute(commands), is(position));
     }

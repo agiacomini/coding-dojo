@@ -1,10 +1,22 @@
 package com.giacomini.andrea.marsrover;
 
-public class Grid {
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+class Grid {
     private static final int MAX_HEIGHT = 10;
     private static final int MAX_WIDTH = 10;
 
-    public Coordinate nextCoordinateFor(Coordinate coordinate, Direction direction) {
+    private List<Coordinate> obstacle = Collections.emptyList();
+
+    Grid(){}
+
+    public Grid(List<Coordinate> obstacle){
+        this.obstacle = obstacle;
+    }
+
+    Coordinate nextCoordinateFor(Coordinate coordinate, Direction direction) {
 //        throw new UnsupportedOperationException();
         int x = coordinate.x();
         int y = coordinate.y();
@@ -24,6 +36,11 @@ public class Grid {
             x = (x > 0) ? x - 1 : MAX_WIDTH - 1;
         }
 
-        return new Coordinate(x, y);
+//        return new Coordinate(x, y);
+        Coordinate newCoordinate = new Coordinate(x,y);
+
+        return obstacle.contains(newCoordinate)
+                ? coordinate
+                : newCoordinate;
     }
 }
