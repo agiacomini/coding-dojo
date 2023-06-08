@@ -3,6 +3,7 @@ package com.giacomini.andrea.marsrover;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 class Grid {
     private static final int MAX_HEIGHT = 10;
@@ -16,7 +17,7 @@ class Grid {
         this.obstacle = obstacle;
     }
 
-    Coordinate nextCoordinateFor(Coordinate coordinate, Direction direction) {
+    Optional<Coordinate> nextCoordinateFor(Coordinate coordinate, Direction direction) {
 //        throw new UnsupportedOperationException();
         int x = coordinate.x();
         int y = coordinate.y();
@@ -39,8 +40,11 @@ class Grid {
 //        return new Coordinate(x, y);
         Coordinate newCoordinate = new Coordinate(x,y);
 
+//        return obstacle.contains(newCoordinate)
+//                ? coordinate
+//                : newCoordinate;
         return obstacle.contains(newCoordinate)
-                ? coordinate
-                : newCoordinate;
+                ? Optional.empty()
+                : Optional.of(newCoordinate);
     }
 }

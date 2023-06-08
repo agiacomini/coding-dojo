@@ -1,5 +1,7 @@
 package com.giacomini.andrea.marsrover;
 
+import java.util.Optional;
+
 class MarsRover {
 
     private Grid grid;
@@ -14,6 +16,8 @@ class MarsRover {
 
     String execute(String commands) {
         System.out.println(commands.toCharArray());
+
+        String obstacleString = "";
         for(char c : commands.toCharArray()){
             if(c == 'R'){
 //                direction = rotateRight();
@@ -28,12 +32,24 @@ class MarsRover {
             if(c == 'M'){
 //                coordinate = move();
 //                grid = new Grid();
-                coordinate = grid.nextCoordinateFor(coordinate, direction);
+
+//                coordinate = grid.nextCoordinateFor(coordinate, direction);
+
+                obstacleString = move();
             }
         }
 //        return "0:0:" + direction;
 //        return "0" + ":" + "0" + ":" + direction.value();
-        return coordinate.x() + ":" + coordinate.y() + ":" + direction.value();
+
+//        return coordinate.x() + ":" + coordinate.y() + ":" + direction.value();
+
+        return obstacleString + coordinate.x() + ":" + coordinate.y() + ":" + direction.value();
+    }
+
+    private String move() {
+        Optional<Coordinate> nextCoordinate = grid.nextCoordinateFor(coordinate, direction);
+        nextCoordinate.ifPresent(nc -> this.coordinate = nc);
+        return nextCoordinate.isPresent() ? "" : "O:";
     }
 
     //    private String rotateLeft() {

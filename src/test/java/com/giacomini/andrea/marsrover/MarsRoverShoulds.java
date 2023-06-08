@@ -119,8 +119,8 @@ public class MarsRoverShoulds {
 
     @Test
     @Parameters({
-            "MMMM, 0:3:N",
-            "RMMMMMM, 1:0:E"
+            "MMMM, O:0:3:N",
+            "RMMMMMM, O:1:0:E"
     })
     public void
     stop_at_obstacle(String commands, String position){
@@ -136,6 +136,7 @@ public class MarsRoverShoulds {
     @Parameters({
             "MMRMMLM, 2:3:N",
             "MMMMMMMMMM, 0:0:N",
+            "RMMLM, 2:1:N"
     })
     public void
     my_test(String commands, String position){
