@@ -195,6 +195,14 @@ Start with a class the following structure:
     public class Account {
 
         public void deposit(int amount);
+
+        public void withdrawal(int amount);
+
+        public void printStatement();
     }
+
+You are not allowed to add any other public method to this class.
+
+NOTE: In order to keep the exercise simple, use int for money and String for dates. Also, you can ignore the formatting of the statement (spaces between pipes and words, etc).
 
 Link: https://www.codurance.com/katalyst/bank

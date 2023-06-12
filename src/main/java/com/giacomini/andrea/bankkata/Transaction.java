@@ -31,4 +31,12 @@ public class Transaction {
         this.date = date;
         this.amount = amount;
     }
+
+    public String date() {
+        return date;
+    }
+
+    public int amount(){
+        return amount;
+    }
 }
