@@ -9,7 +9,7 @@ import static com.giacomini.andrea.bagkata.Bag.MAX_BAG_SIZE;
 import static com.giacomini.andrea.bagkata.Material.*;
 
 public class BackPack {
-    public static final int MAX_BACKPACK_SIZE = 8;
+    private static final int MAX_BACKPACK_SIZE = 8;
     private List<Item> items;
     private List<Bag> bags;
     public BackPack(){
@@ -36,7 +36,7 @@ public class BackPack {
         }
         return this.toString();
     }
-    public String addBags(List<Bag> listBags){
+    public String addBagsToBackPack(List<Bag> listBags){
         for (Bag bag: listBags) {
             bags.add(bag);
         }
@@ -67,14 +67,14 @@ public class BackPack {
         Collections.sort(items);
         for (int i = 0; i < items.size(); i++) {
             switch (items.get(i).category()){
-                case METALS: organizeByMaterialCategory(i, METALS); break;
-                case CLOTHES: organizeByMaterialCategory(i, CLOTHES); break;
-                case HERBS: organizeByMaterialCategory(i, HERBS); break;
-                case WEAPONS: organizeByMaterialCategory(i, WEAPONS); break;
+                case METALS: organizeBagItemsByMaterialCategory(i, METALS); break;
+                case CLOTHES: organizeBagItemsByMaterialCategory(i, CLOTHES); break;
+                case HERBS: organizeBagItemsByMaterialCategory(i, HERBS); break;
+                case WEAPONS: organizeBagItemsByMaterialCategory(i, WEAPONS); break;
             }
         }
     }
-    private void organizeByMaterialCategory(int index, Material material){
+    private void organizeBagItemsByMaterialCategory(int index, Material material){
         if(items.get(index).category().equals(material)){
             for (Bag bag: bags) {
                 if(checkCategory.test(items.get(index), bag)){

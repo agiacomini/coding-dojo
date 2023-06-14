@@ -26,13 +26,12 @@ public class BackPackShould {
         listBags.add(new Bag(new ArrayList<>()));
         listBags.add(new Bag(new ArrayList<>(), WEAPONS));
         listBags.add(new Bag(new ArrayList<>()));
-        backpack.addBags(listBags);
+        backpack.addBagsToBackPack(listBags);
     }
 
     @Test
     public void
     add_new_extra_item_when_backpack_is_empty(){
-//        listItems.add(new Item("Copper","Metals"));
         listItems.add(new Item("Copper", METALS));
         assertThat(backpack.addItems(listItems), is("BackPack: [Copper]"));
     }
