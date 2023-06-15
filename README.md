@@ -240,3 +240,136 @@ Items are sorted alphabetically after organizing the bags
         }
 
 Link: https://www.codurance.com/katalyst/bags
+
+ATM Machine Kata
+===============
+
+# Iteration 1
+## Business Rules
+
+We want to build an ATM machine and the first thing we need to do, is to create 
+the software that will breakdown which bills (notes) and coins to give you when 
+you are trying to make a withdrawal.
+
+The content of the ATM is:
+
+    | Value | Type |
+    |-------|------|
+    | 500   | bill |
+    | 200   | bill |
+    | 100   | bill |
+    | 50    | bill |
+    | 20    | bill |
+    | 10    | bill |
+    | 5     | bill |
+    | 2     | coin |
+    | 1     | coin |
+
+## Example
+
+Input
+
+    As a user
+    I withdraw 434€
+
+Output
+
+    2 bills of 200.
+    1 bill of 20.
+    1 bill of 10.
+    2 coins of 2.
+
+# Iteration 2
+## Business Rules
+
+The ATM machine has the following distribution of money.
+
+- When the ATM machine has no more money should return an error that shows 
+"The ATM machine has not enough money, please go to the nearest atm 
+machine".
+- If the ATM has no more bills or coins should try to use other quantities to allow 
+the user to withdraw the amount.
+
+The initial state of any ATM
+
+    | Value | Type | quantity of units |
+    |-------|------|-------------------|
+    | 500   | bill | 2                 |
+    | 200   | bill | 3                 |
+    | 100   | bill | 5                 |
+    | 50    | bill | 12                |
+    | 20    | bill | 20                |
+    | 10    | bill | 50                |
+    | 5     | bill | 100               |
+    | 2     | coin | 250               |
+    | 1     | coin | 500               |
+
+## Example
+
+The initial state of any ATM
+
+    | Value | Type | quantity of units |
+    |-------|------|-------------------|
+    | 500   | bill | 2                 |
+    | 200   | bill | 3                 |
+    | 100   | bill | 5                 |
+    | 50    | bill | 12                |
+    | 20    | bill | 20                |
+    | 10    | bill | 50                |
+    | 5     | bill | 100               |
+    | 2     | coin | 250               |
+    | 1     | coin | 500               |
+
+Input
+
+    As a user
+    I withdraw 1725€
+
+Output
+
+    2 bills of 500.
+    3 bills of 200.
+    1 bill of 100.
+    1 bill of 20.
+    1 bill of 5.
+
+ATM state after the output
+
+    | Value | Type | quantity of units |
+    |-------|------|-------------------|
+    | 500   | bill | 0                 |
+    | 200   | bill | 0                 |
+    | 100   | bill | 4                 |
+    | 50    | bill | 12                |
+    | 20    | bill | 19                |
+    | 10    | bill | 50                |
+    | 5     | bill | 99                |
+    | 2     | coin | 250               |
+    | 1     | coin | 500               |
+
+Input
+
+    As a user
+    I withdraw 1825€
+
+Output
+
+    4 bills of 100.
+    12 bills of 50.
+    19 bills of 20.
+    44 bills of 10.
+    1 bill of 5.
+
+ATM state after the output
+
+    | Value | Type | quantity of units |
+    |-------|------|-------------------|
+    | 500   | bill | 0                 |
+    | 200   | bill | 0                 |
+    | 100   | bill | 0                 |
+    | 50    | bill | 0                 |
+    | 20    | bill | 0                 |
+    | 10    | bill | 6                 |
+    | 5     | bill | 98                |
+    | 2     | coin | 250               |
+    | 1     | coin | 500               |
