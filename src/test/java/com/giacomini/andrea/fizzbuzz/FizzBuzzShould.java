@@ -1,9 +1,9 @@
 package com.giacomini.andrea.fizzbuzz;
 
-import com.giacomini.andrea.fizzbuzz.FizzBuzz;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,12 +69,6 @@ public class FizzBuzzShould {
 
     @Test
     void convert(){
-//        int num = 100;
-//        int[] numbers = new int[num];
-//        for(int i = 0; i < num; i++){
-//            numbers[i] = i +1;
-//            System.out.println(numbers[i]);
-//        }
         assertEquals("1", new FizzBuzz().convert_2(1));
         assertEquals("2", new FizzBuzz().convert_2(2));
         assertEquals("FizzFizz", new FizzBuzz().convert_2(3));
@@ -91,5 +85,33 @@ public class FizzBuzzShould {
         assertEquals("14", new FizzBuzz().convert_2(14));
         assertEquals("FizzBuzzBuzz", new FizzBuzz().convert_2(15));
         assertEquals("Fizz", new FizzBuzz().convert_2(23));
+    }
+
+    private static Object[][] dataProvider(){
+        return new Object[][]{
+                {1, "1"},
+                {2, "2"},
+                {3, "FizzFizz"},
+                {4, "4"},
+                {5, "BuzzBuzz"},
+                {6, "Fizz"},
+                {7, "7"},
+                {8, "8"},
+                {9, "Fizz"},
+                {10, "Buzz"},
+                {11, "11"},
+                {12, "Fizz"},
+                {13, "Fizz"},
+                {14, "14"},
+                {15, "FizzBuzzBuzz"}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    public void dataProviderTest(int number, String expectedResult){
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        String actualResult = fizzBuzz.convert(number);
+        assertEquals(expectedResult, actualResult);
     }
 }
